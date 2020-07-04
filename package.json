@@ -4,6 +4,7 @@
   "description": "A Dice 3D made with Web Components to use in your project",
   "main": "index.js",
   "scripts": {
+    "build": "rollup --config",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "./node_modules/.bin/tslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,11 +16,9 @@
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
+    "@rollup/plugin-typescript": "^5.0.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^12.0.7",
-    "@types/jest": "^25.1.4",
-    "@types/node": "^12.12.38",
-    "@types/styled-components": "^5.1.0",
     "commitizen": "^4.1.2",
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.2.0",
@@ -30,6 +29,8 @@
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
+    "rollup": "^2.18.2",
+    "tslib": "^2.0.0",
     "tslint": "^6.1.2"
   },
   "repository": {
