@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "module": "esnext",
+    "module": "ES2015",
     "lib": [
       "dom",
       "esnext"
     ],
     "moduleResolution": "node",
-    "jsx": "react",
     "sourceMap": true,
-    "declaration": true,
     "esModuleInterop": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -28,12 +25,12 @@
     "isolatedModules": true,
     "noEmit": true
   },
+  "compileOnSave": true,
   "include": [
     "src"
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "example"
+    "dist"
   ]
 }
