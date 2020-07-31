@@ -44,10 +44,9 @@ export default function Dice3D({ sides = 6 }: Options) {
     document.body.appendChild(diceContainer);
   };
 
-  const _getRandomNumber = (min = 1, max = 6) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  const _toggleClasses = (dice: Element) => {
+    dice.classList.toggle('odd-roll');
+    dice.classList.toggle('even-roll');
   };
 
   _createDice();
