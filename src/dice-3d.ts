@@ -5,7 +5,39 @@ interface Options {
   sides?: number;
 }
 
-export default function Dice3D({ sides = 6 }: Options) {
+  const _createButton = (container: HTMLDivElement) => {
+    const button = document.createElement('button');
+    button.classList.add('button-dice');
+    button.id = buttonId;
+    button.textContent = 'Fodasse';
+    container.appendChild(button);
+  };
+
+  const _createDice = () => {
+    const list: HTMLOListElement = document.createElement('ol');
+
+    list.classList.add('dice3d-list', 'even-roll');
+
+    list.dataset.roll = _getRandomNumber().toString();
+    _createSides(list);
+    return list;
+  };
+
+  const _buildDices = () => {
+    const diceContainer: HTMLDivElement = document.createElement('div');
+    diceContainer.classList.add('dice');
+    let index = 1;
+
+    for (index; index <= quantityDices; index++) {
+      const list = _createDice();
+      console.info(quantityDices);
+      diceContainer.appendChild(list);
+    }
+    console.info(diceContainer);
+
+    _createButton(diceContainer);
+    document.body.appendChild(diceContainer);
+  };
   const _createDots = (item: HTMLLIElement, indexItem: number) => {
     let index = 1;
     for (index; index <= indexItem; index++) {
