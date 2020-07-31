@@ -1,10 +1,16 @@
 interface Options {
   bgColor?: string;
-  button?: string;
+  buttonId?: string;
   name?: string;
+  quantityDices?: number;
   sides?: number;
 }
 
+export default function Dice3D({
+  buttonId = 'roll-button',
+  quantityDices = 1,
+  sides = 6,
+}: Options) {
   const _createButton = (container: HTMLDivElement) => {
     const button = document.createElement('button');
     button.classList.add('button-dice');
@@ -38,6 +44,7 @@ interface Options {
     _createButton(diceContainer);
     document.body.appendChild(diceContainer);
   };
+
   const _createDots = (item: HTMLLIElement, indexItem: number) => {
     let index = 1;
     for (index; index <= indexItem; index++) {
@@ -49,7 +56,7 @@ interface Options {
     return item;
   };
 
-  const _createSides = (list: HTMLUListElement) => {
+  const _createSides = (list: HTMLOListElement) => {
     let index = 1;
 
     for (index; index <= sides; index++) {
@@ -87,5 +94,7 @@ interface Options {
     dice.classList.toggle('even-roll');
   };
 
-  _createDice();
+  _buildDices();
+  const fodasse = <HTMLButtonElement>document.getElementById(buttonId);
+  fodasse.addEventListener('click', _rollDice);
 }
