@@ -31,17 +31,23 @@ export default function Dice3D({ sides = 6 }: Options) {
     return list;
   };
 
-  const _createDice = () => {
-    const diceContainer: HTMLDivElement = document.createElement('div');
-    const list: HTMLUListElement = document.createElement('ul');
+  const _getRandomNumber = (min = 1, max = 6) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
 
-    diceContainer.classList.add('dice');
-    list.classList.add('dice3d-list', 'even-roll');
+  const _rollDice = () => {
+    const diceElements = document.querySelectorAll('.dice3d-list');
+    const dices = { ...diceElements };
 
-    list.dataset.roll = _getRandomNumber().toString();
-    _createSides(list);
-    diceContainer.appendChild(list);
-    document.body.appendChild(diceContainer);
+    for (const key in dices) {
+      if (dices.hasOwnProperty(key)) {
+        _toggleClasses(dices[key]);
+        const newValue = _getRandomNumber();
+        dices[key].setAttribute('data-roll', newValue.toString());
+      }
+    }
   };
 
   const _toggleClasses = (dice: Element) => {
