@@ -1,34 +1,67 @@
 interface Options {
   bgColor?: string;
   buttonId?: string;
-  name?: string;
+  buttonLabel?: string;
+  container?: string;
   quantityDices?: number;
   sides?: number;
 }
 
 export default class Dice3D {
+  defaultOptions: Options = {
+    buttonId: 'roll-button',
+    buttonLabel: 'Jogar',
+    quantityDices: 1,
+    sides: 6,
+  };
   opts: Options;
 
   constructor(options: Options) {
-    const _defaultOptions = {
-      buttonId: 'roll-button',
-      quantityDices: 1,
-      sides: 6,
-    };
     this.opts = {
-      ..._defaultOptions,
+      ...this.defaultOptions,
       ...options,
     };
     this._buildDices();
-    const fodasse = <HTMLButtonElement>document.getElementById(this.opts.buttonId!);
-    fodasse.addEventListener('click', this._rollDice);
+    this.rollDice = this.rollDice.bind(this);
+    const button = <HTMLButtonElement>document.getElementById(this.opts.buttonId!);
+    button.addEventListener('click', this.rollDice);
+  }
+
+  rollDice() {
+    const diceElements = document.querySelectorAll('.dice3d-list');
+    const dices = { ...diceElements };
+    let values = [];
+
+    for (const key in dices) {
+      if (dices.hasOwnProperty(key)) {
+        this._toggleClasses(dices[key]);
+        const newValue = this._getRandomNumber();
+        dices[key].setAttribute('data-roll', newValue.toString());
+        values.push(newValue);
+      }
+    }
+
+    return values;
+  }
+
+  private _appendElements(container: HTMLDivElement) {
+    if (this.opts.buttonId === this.defaultOptions.buttonId) {
+      this._createButton(container);
+    }
+
+    if (this.opts.container) {
+      const userContainer = document.querySelector(this.opts.container);
+      userContainer?.appendChild(container);
+    } else {
+      document.body.appendChild(container);
+    }
   }
 
   private _createButton(container: HTMLDivElement) {
     const button = document.createElement('button');
     button.classList.add('button-dice');
     button.id = this.opts.buttonId!;
-    button.textContent = 'Fodasse';
+    button.textContent = this.opts.buttonLabel!;
     container.appendChild(button);
   }
 
@@ -47,18 +80,18 @@ export default class Dice3D {
     diceContainer.classList.add('dice');
     let index = 1;
 
-    for (index; index <= this.opts.quantityDices!; index++) {
+    for (; index <= this.opts.quantityDices!; index++) {
       const list = this._createDice();
       diceContainer.appendChild(list);
     }
 
-    this._createButton(diceContainer);
-    document.body.appendChild(diceContainer);
+    this._appendElements(diceContainer);
   }
 
   private _createDots(item: HTMLLIElement, indexItem: number) {
     let index = 1;
-    for (index; index <= indexItem; index++) {
+
+    for (; index <= indexItem; index++) {
       const dot = document.createElement('span');
       dot.classList.add('dot');
       item.appendChild(dot);
@@ -70,7 +103,7 @@ export default class Dice3D {
   private _createSides(list: HTMLOListElement) {
     let index = 1;
 
-    for (index; index <= this.opts.sides!; index++) {
+    for (; index <= this.opts.sides!; index++) {
       const item: HTMLLIElement = document.createElement('li');
       item.classList.add('item');
       item.setAttribute('data-side', `${index}`);
@@ -84,20 +117,8 @@ export default class Dice3D {
   private _getRandomNumber(min = 1, max = 6) {
     min = Math.ceil(min);
     max = Math.floor(max);
+
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  private _rollDice() {
-    const diceElements = document.querySelectorAll('.dice3d-list');
-    const dices = { ...diceElements };
-
-    for (const key in dices) {
-      if (dices.hasOwnProperty(key)) {
-        this._toggleClasses(dices[key]);
-        const newValue = this._getRandomNumber();
-        dices[key].setAttribute('data-roll', newValue.toString());
-      }
-    }
   }
 
   private _toggleClasses(dice: Element) {

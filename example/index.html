@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Dice 3D</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="styles.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="dice3d-container"></div>
+  <button id="fodasse">Joga essa merda</button>
+  <script src="dice-3d.min.js" async defer></script>
+  <script>
+    (function (win) {
+      win.addEventListener(
+        'load',
+        () => {
+          const bla = {
+            buttonId: 'fodasse',
+            container: '#dice3d-container',
+            quantityDices: 2,
+          };
+
+          const fodasse = new Dice3D(bla);
+        },
+        false
+      );
+    })(window);
+
+  </script>
+</body>
+
+</html>
