@@ -1,4 +1,8 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractSass = new ExtractTextPlugin({
+  filename: `dist/${name}.style.min.css`,
+});
 
 module.exports = {
   mode: 'production',
@@ -18,11 +22,19 @@ module.exports = {
         loader: 'ts-loader',
         test: /\.tsx?$/,
       },
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: ['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader'],
+          fallback: 'style-loader',
+        }),
+      },
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  plugins: [extractSass],
   devServer: {
     contentBase: [path.join(__dirname, 'example'), path.join(__dirname, 'dist')],
     port: '8000',
