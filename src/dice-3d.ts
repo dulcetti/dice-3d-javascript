@@ -13,7 +13,7 @@ interface Options {
 export default class Dice3D {
   defaultOptions: Options = {
     buttonId: 'roll-button',
-    buttonLabel: 'Jogar',
+    buttonLabel: 'Play',
     quantityDices: 1,
     sides: 6,
   };
@@ -60,6 +60,19 @@ export default class Dice3D {
     }
   }
 
+  private _buildDices() {
+    const diceContainer: HTMLDivElement = document.createElement('div');
+    diceContainer.classList.add('dice');
+    let index = 1;
+
+    for (; index <= this.opts.quantityDices!; index++) {
+      const list = this._createDice();
+      diceContainer.appendChild(list);
+    }
+
+    this._appendElements(diceContainer);
+  }
+
   private _createButton(container: HTMLDivElement) {
     const button = document.createElement('button');
     button.classList.add('button-dice');
@@ -76,19 +89,6 @@ export default class Dice3D {
     list.dataset.roll = this.opts.randInitVals ? this._getRandomNumber().toString() : '1';
     this._createSides(list);
     return list;
-  }
-
-  private _buildDices() {
-    const diceContainer: HTMLDivElement = document.createElement('div');
-    diceContainer.classList.add('dice');
-    let index = 1;
-
-    for (; index <= this.opts.quantityDices!; index++) {
-      const list = this._createDice();
-      diceContainer.appendChild(list);
-    }
-
-    this._appendElements(diceContainer);
   }
 
   private _createDots(item: HTMLLIElement, indexItem: number) {
