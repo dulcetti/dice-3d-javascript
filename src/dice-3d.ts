@@ -1,8 +1,11 @@
+import './styles.scss';
+
 interface Options {
   bgColor?: string;
   buttonId?: string;
   buttonLabel?: string;
   container?: string;
+  randInitVals?: boolean;
   quantityDices?: number;
   sides?: number;
 }
@@ -70,7 +73,7 @@ export default class Dice3D {
 
     list.classList.add('dice3d-list', 'even-roll');
 
-    list.dataset.roll = this._getRandomNumber().toString();
+    list.dataset.roll = this.opts.randInitVals ? this._getRandomNumber().toString() : '1';
     this._createSides(list);
     return list;
   }
