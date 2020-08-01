@@ -6,24 +6,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="styles.css" rel="stylesheet" />
+  <link href="dice-3d.style.min.css" rel="stylesheet" />
 </head>
 
 <body>
   <div id="dice3d-container"></div>
-  <button id="fodasse">Joga essa merda</button>
+  <button id="my-button" class="button">Roll dices</button>
   <script src="dice-3d.min.js" async defer></script>
   <script>
     (function (win) {
       win.addEventListener(
         'load',
         () => {
-          const bla = {
-            buttonId: 'fodasse',
+          const myConfig = {
+            buttonId: 'my-button',
             container: '#dice3d-container',
-            quantityDices: 2,
+            quantityDices: 4,
           };
 
-          const fodasse = new Dice3D(bla);
+          const myDice = new Dice3D(myConfig);
         },
         false
       );
