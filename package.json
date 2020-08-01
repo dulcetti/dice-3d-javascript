@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "Bruno Dulcetti",
   "license": "MIT",
-  "description": "A Dice 3D made with Web Components to use in your project",
+  "description": "A Dice 3D made with JavaScript to use in your project",
   "main": "dist/dice-3d.js",
   "scripts": {
     "build": "webpack",
