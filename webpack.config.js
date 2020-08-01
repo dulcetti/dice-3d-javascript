@@ -1,8 +1,5 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractSass = new ExtractTextPlugin({
-  filename: `dist/${name}.style.min.css`,
-});
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'production',
@@ -23,18 +20,29 @@ module.exports = {
         test: /\.tsx?$/,
       },
       {
-        test: /\.scss$/,
-        use: extractSass.extract({
-          use: ['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader'],
-          fallback: 'style-loader',
-        }),
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+            },
+          },
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  plugins: [extractSass],
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: `dice-3d.style.min.css`,
+    }),
+  ],
   devServer: {
     contentBase: [path.join(__dirname, 'example'), path.join(__dirname, 'dist')],
     port: '8000',
