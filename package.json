@@ -54,6 +54,9 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
+  "peerDependencies": {
+    "dot-prop": "5.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dulcetti/dice-3d-javascript.git"
