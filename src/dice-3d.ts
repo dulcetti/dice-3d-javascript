@@ -5,8 +5,8 @@ interface Options {
   buttonId?: string;
   buttonLabel?: string;
   container?: string;
-  randInitVals?: boolean;
   quantityDices?: number;
+  randInitVals?: boolean;
   sides?: number;
 }
 
@@ -31,7 +31,7 @@ export default class Dice3D {
   }
 
   rollDice() {
-    const diceElements = document.querySelectorAll('.dice3d-list');
+    const diceElements = document.querySelectorAll('.dice3d > .list');
     const dices = { ...diceElements };
     let values = [];
 
@@ -62,7 +62,7 @@ export default class Dice3D {
 
   private _buildDices() {
     const diceContainer: HTMLDivElement = document.createElement('div');
-    diceContainer.classList.add('dice');
+    diceContainer.classList.add('dice3d');
     let index = 1;
 
     for (; index <= this.opts.quantityDices!; index++) {
@@ -75,7 +75,7 @@ export default class Dice3D {
 
   private _createButton(container: HTMLDivElement) {
     const button = document.createElement('button');
-    button.classList.add('button-dice');
+    button.classList.add('dice3d-button');
     button.id = this.opts.buttonId!;
     button.textContent = this.opts.buttonLabel!;
     container.appendChild(button);
@@ -84,7 +84,7 @@ export default class Dice3D {
   private _createDice() {
     const list: HTMLOListElement = document.createElement('ol');
 
-    list.classList.add('dice3d-list', 'even-roll');
+    list.classList.add('list', 'even-roll');
 
     list.dataset.roll = this.opts.randInitVals ? this._getRandomNumber().toString() : '1';
     this._createSides(list);
