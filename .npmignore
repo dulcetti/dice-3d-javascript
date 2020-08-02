@@ -1,0 +1,13 @@
+coverage/
+src/
+.editorconfig
+.gitignore
+.npmignore
+.prettierrc
+jest.config.js
+postcss.config.js
+tsconfig.json
+tsconfig.test.json
+tslint.json
+webpack.config.js
+yarn.lock
