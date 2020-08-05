@@ -14,7 +14,10 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "./node_modules/.bin/tslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "start": "NODE_ENV=development webpack-dev-server",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage --watchAll=false",
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
@@ -55,6 +58,7 @@
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
+    "ts-jest": "^26.1.4",
     "ts-loader": "^8.0.1",
     "tslib": "^2.0.0",
     "tslint": "^6.1.2",
