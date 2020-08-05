@@ -1,4 +1,9 @@
 module.exports = {
+  roots: ['<rootDir>/src'],
+  testMatch: ['**/__tests__/**/*.+(ts|tsx|js)', '**/?(*.)+(spec|test).+(ts|tsx|js)'],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!<rootDir>/node_modules/'],
   coverageThreshold: {
     global: {
@@ -10,6 +15,9 @@ module.exports = {
   },
   coverageReporters: ['text'],
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['/node_modules/'],
+  testPathIgnorePatterns: ['/node_modules/', './src/styles.scss'],
   collectCoverage: true,
+  moduleNameMapper: {
+    '\\.(scss|css|jpg|png|gif)$': '<rootDir>/tests/files.mock.js',
+  },
 };
