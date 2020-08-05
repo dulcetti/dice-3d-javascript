@@ -14,7 +14,10 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "./node_modules/.bin/tslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "start": "NODE_ENV=development webpack-dev-server",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage --watchAll=false",
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
