@@ -66,10 +66,10 @@
     "webpack-dev-server": "^3.11.0"
   },
   "peerDependencies": {
-    "dot-prop": "5.x"
+    "dot-prop": "6.x"
   },
   "resolutions": {
-    "dot-prop": "5.x"
+    "dot-prop": "6.x"
   },
   "repository": {
     "type": "git",
