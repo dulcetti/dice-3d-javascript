@@ -20,7 +20,6 @@
     "test:watchAll": "jest --watchAll"
   },
   "dependencies": {
-    "babel-plugin-styled-components": "^1.11.1",
     "typescript": "^4.0.3"
   },
   "devDependencies": {
