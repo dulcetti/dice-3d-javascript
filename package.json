@@ -13,7 +13,7 @@
     "build": "webpack",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "./node_modules/.bin/tslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "start": "NODE_ENV=development webpack-dev-server",
+    "start": "NODE_ENV=development webpack serve",
     "test": "jest",
     "test:coverage": "jest --coverage --watchAll=false",
     "test:watch": "jest --watch",
